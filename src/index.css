@@ -1,13 +1,239 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body{
+  margin: 0 5px;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.row{
+  display: flex;
 }
+
+.items-center{
+  align-items: center;
+}
+
+.content-center{
+  align-content: center;
+}
+
+.btn{
+  width: 50px;
+  background-color: rgb(219, 214, 214);
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
+  color: #000;
+  padding: 10px;
+}
+
+.add-btn{
+  position: fixed;
+  top: 30px;
+  right: 80px;
+}
+
+.btn-view {
+  width: 50px;
+  background-color: rgb(219, 214, 214);
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
+  color: #000;
+  padding: 10px;
+  text-decoration: none;
+  display: inline-block; /* Match display type with other buttons */
+}
+
+.add{
+  background: rgb(16, 122, 67);
+  font-size: 25px;
+  font-weight: bold;
+  padding: 5px 13px;
+  color: #fff;
+  font-family: Tahoma;
+}
+
+.filter{
+  border-bottom: 1px #ccc solid;
+  justify-content: center;
+}
+
+.filter div{
+  margin: 10px;
+}
+
+.hdr{
+  font-weight: bold;
+}
+
+.column{
+  text-align: center;
+  padding: 3px 6px;
+}
+
+.column.id{
+  width: 10%;
+}
+
+.column.title{
+  width: 10%;
+}
+
+.column.description{
+  width: 10%;
+}
+
+.column.importance{
+  width: 10%;
+}
+
+.column.date{
+  width: 10%;
+}
+
+.column.time{
+  width: 10%;
+}
+
+.column.address{
+  width: 10%;
+}
+
+.column.edit{
+  width: 1%;
+  color: orange;
+  text-align: center;
+  margin-right: 50px;
+}
+
+.column.delete{
+  width: 1%;
+  color: red;
+  margin-left: 10px;
+
+}
+
+.column.view{
+  width: 10%;
+  color: grey;
+  margin-left: 10px;
+}
+
+.underline{
+  border: 1px solid white;
+}
+
+.me-15{
+  margin-right: 15px;
+}
+
+.mt-15{
+  margin-top: 15px;
+}
+
+.ms-10{
+  margin-left: 10px;
+}
+
+.bc-red{
+  background-color: red;
+  background: red;
+}
+
+.bc-green{
+  background-color: green;
+  background: green;
+}
+
+.bc-gold{
+  background-color: yellow;
+  background: yellow;
+}
+
+.not-allowed{
+  cursor: not-allowed;
+}
+
+.no-event{
+  pointer-events: none;
+}
+
+.waiting{
+  cursor: wait;
+}
+
+.loading{
+  width: 0px;
+  font-weight: bold;
+  animation-name: loading;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  overflow: hidden;
+}
+
+@keyframes loading{
+  0% {width: 0px;}
+  50% {width: 4px;}
+  100% {width: 15px;}
+}
+
+.hidden{
+  visibility: hidden;
+}
+
+.modal{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background: rgba(0, 0, 0, 0.385);
+  width: 100%;
+  height: 100%;
+}
+
+.modal-container{
+  background: #fff;
+  border-radius: 9px;
+  padding: 8px;
+  max-width: 85vw;
+}
+
+.modal-title{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+/* navbar */
+
+/* Navbar.css */
+.navbar {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+}
+
+.navbar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.navbar li {
+  display: inline;
+  margin-right: 20px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+

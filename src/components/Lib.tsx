@@ -6,7 +6,7 @@ import { DataItem } from "./DataItem";
     {ID : 3, Title: "three", Description: "one", LevelOfImportance: 1, Date: "14-04-2024", Time: "10:30", Address: "Berceni 3" },
  ];
 
- const url = "http://localhost:5168/api/appointment";
+ const url = "https://appointmentswebapi-ekeyg5gbgkencjbq.westeurope-01.azurewebsites.net/api/appointment";
 
 
 export const entry:any = {

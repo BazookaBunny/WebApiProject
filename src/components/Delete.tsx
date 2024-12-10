@@ -9,7 +9,7 @@ export default function Delete(props: any) {
     }, [props.stateListener])
 
     const deleteApp = async () => {
-        await deleteAppointment(activeId.id)
+         deleteAppointment(activeId.id)
             .then((response) => {
                 console.log("Appointment deleted");
                 props.refreshApp(Math.random() * 100 * Math.random());

@@ -40,7 +40,7 @@ const ViewAppointment: React.FC = () => {
     if (!appointment) return <div>No appointment found.</div>;
 
     return (
-        <div>
+        <div className='container text-center'>
             <h2>{appointment.Title}</h2>
             <p>Description: {appointment.Description}</p>
             <p>Date: {appointment.Date}</p>

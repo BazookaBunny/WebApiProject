@@ -25,16 +25,21 @@ export const activeId = {
 }
 
 
- export async function getAppointments(){
-   const res = await fetch(url);
+export async function getAppointments(): Promise<DataItem[]> {
+   try {
+       const res = await fetch(url);
 
-   if(!res.ok){
-      console.log("Error");
-      return [];
+       if (!res.ok) {
+           console.log("Error: Server responded with status " + res.status);
+           return await getAppointments();
+       }
+
+       return await res.json(); 
+   } catch (error) {
+       console.error("Error: ", error);
+       return await getAppointments();
    }
-
-   return await res.json();
- }
+}
 
  export async function getAppointmentById(id: any) {
    const res = await fetch(`${url}/${id}`, {

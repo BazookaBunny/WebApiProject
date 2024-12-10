@@ -7,72 +7,118 @@ import { getAppointments, openModal } from "./Lib";
 import { DataItem } from "./DataItem";
 
 export default function Home() {
-    const [dataList, setDataList] = useState<DataItem[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
-    const [refreshData, setRefreshData] = useState(0);
-    const [stateListener, setStateListener] = useState(0);
+    const [dataList, setDataList] = useState<DataItem[]>([]); // Stores appointment data
+    const [loading, setLoading] = useState<boolean>(true); // Loading state
+    const [error, setError] = useState<string | null>(null); // Error state
+    const [refreshData, setRefreshData] = useState(0); // State to trigger data refresh
+    const [stateListener, setStateListener] = useState(0); // Used for modal communication
 
-
+    // Fetch appointments whenever refreshData changes
     useEffect(() => {
         const fetchAppointments = async () => {
+            setLoading(true); // Set loader to true before fetching data
             try {
                 const data = await getAppointments();
-                setDataList(data);
+                console.log("Fetched appointments:", data); // Debugging fetched data
+                setDataList(data); // Populate the data list
+                setError(null); // Clear any previous error
             } catch (err) {
                 console.error("Failed to fetch appointments:", err);
-                setError("Failed to load appointments.");
+                setError("Failed to load appointments."); // Set error message
             } finally {
-                setLoading(false);
+                setLoading(false); // Loader off after fetching
             }
         };
 
         fetchAppointments();
-    }, [refreshData]); 
+    }, [refreshData]); // Dependency: re-fetch when refreshData changes
 
+    // Function to trigger a data refresh
+    const refreshApp = () => setRefreshData((prev) => prev + 1);
 
     return (
-        <div>
-
-            <h1>Manage Your Appointments</h1>
-            <p>This web app helps you to manage your dates very easily.</p>
-            <div className="add-btn row items-center content-center" onClick={() => openModal("new-modal")}>
-                <div className="btn add">+</div>
+        <div className="container my-4">
+            {/* Header */}
+            <div className="text-center mb-4">
+                <h1>Manage Your Appointments</h1>
+                <p>This web app helps you to manage your appointments very easily.</p>
             </div>
 
-            <div className="row underline hdr">
-                <div className="column id">Id</div> 
-                <div className="column title">Title</div>
-                <div className="column description">Description</div>
-                <div className="column importance">Importance</div>
-                <div className="column date">Date</div>
-                <div className="column time">Time</div>
-                <div className="column address">Address</div>
-                <div className="column edit">Edit</div>
-                <div className="column delete">Delete</div>
-                <div className="column view">View</div>
+            {/* Add Button */}
+            <div className="d-flex justify-content-end mb-3">
+                <button
+                    className="btn btn-success"
+                    onClick={() => openModal("new-modal")}
+                >
+                    +
+                </button>
             </div>
 
-            {
-                loading ? 
-                <div className="row mt-15 waiting">Loading <div className="loading">...</div></div>
-                : dataList.map(item => (
-                    <Appointment 
-                        item={item} 
-                        stateListener={setStateListener}
-                    />
-                ))
-            }
+            {/* Table */}
+            <div className="table-responsive">
+                <table className="table table-bordered">
+                    <thead className="table-light">
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Importance</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* Loading State */}
+                        {loading ? (
+                                <td colSpan={8} className="text-center">
+                                    <span
+                                        className="spinner-border spinner-border-sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    ></span>{" "}
+                                    Loading...
+                                </td>
+                        ) : error ? (
+                            // Error State
+                            <tr>
+                                <td colSpan={8} className="text-center text-danger">
+                                    {error}
+                                </td>
+                            </tr>
+                        ) : dataList.length === 0 ? (
+                            // Empty State
+                            <tr>
+                                <td colSpan={8} className="text-center">
+                                    No appointments found.
+                                </td>
+                            </tr>
+                        ) : (
+                            // Render Appointments
+                            dataList.map((item) => (
+                                <Appointment
+                                    key={item.ID}
+                                    item={item}
+                                    stateListener={setStateListener}
+                                    refreshData={refreshApp}
+                                />
+                            ))
+                        )}
+                    </tbody>
+                </table>
+            </div>
 
+            {/* Modals */}
             <section>
                 <section className="modal new-modal hidden">
-                    <New refreshApp={setRefreshData} />
+                    <New refreshApp={refreshApp} loader={() => setLoading(true)} />
                 </section>
                 <section className="modal edit-modal hidden">
-                    <Edit stateListener={stateListener} refreshApp={setRefreshData}/>
+                    <Edit stateListener={stateListener} refreshApp={refreshApp} />
                 </section>
                 <section className="modal delete-modal hidden">
-                    <Delete stateListener={stateListener} refreshApp={setRefreshData}/>
+                    <Delete stateListener={stateListener} refreshApp={refreshApp} />
                 </section>
             </section>
         </div>

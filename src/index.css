@@ -1,8 +1,8 @@
-body{
+/* body{
   margin: 0 5px;
   padding: 0;
-}
-
+} */
+/* 
 .row{
   display: flex;
 }
@@ -41,7 +41,7 @@ body{
   padding: 10px;
   text-decoration: none;
   display: inline-block; /* Match display type with other buttons */
-}
+/* }
 
 .add{
   background: rgb(16, 122, 67);
@@ -168,7 +168,7 @@ body{
   animation-duration: 0.5s;
   animation-iteration-count: infinite;
   overflow: hidden;
-}
+} */ 
 
 @keyframes loading{
   0% {width: 0px;}

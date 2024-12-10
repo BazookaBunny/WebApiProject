@@ -84,7 +84,7 @@ export default function Edit(props: any){
 
             <div className="row mt-15">
                 <div>
-                    <label htmlFor="Address_n">Address</label>
+                    <label htmlFor="Address_n">Address</label><br />
                     <input
                         type="text"
                         id="Address_n"
@@ -95,7 +95,7 @@ export default function Edit(props: any){
                 </div>
 
                 <div className="ms-10">
-                    <label htmlFor="LevelOfImportance_n">Importance</label>
+                    <label htmlFor="LevelOfImportance_n">Importance</label><br />
                     <select
                         id="LevelOfImportance_n"
                         name="levelOfImportance"
@@ -114,7 +114,7 @@ export default function Edit(props: any){
 
             <div className="row mt-15">
                 <div>
-                    <label htmlFor="Date_n">Date</label>
+                    <label htmlFor="Date_n">Date</label><br />
                     <input
                         type="date"
                         id="Date_n"
@@ -125,7 +125,7 @@ export default function Edit(props: any){
                 </div>
 
                 <div>
-                    <label htmlFor="Time_n">Time</label>
+                    <label htmlFor="Time_n">Time</label><br />
                     <input
                         type="time"
                         id="Time_n"
